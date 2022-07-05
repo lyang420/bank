@@ -12,3 +12,5 @@ Implement ability to access multiple banks within the same session, create multi
 Implement functionality to take out loans, open a line of credit, and calculate interest on accounts.
 
 Implement functionality for multiple account types; checkings, savings, etc.
+
+Implement GUI support to upgrade from text-based user interface to graphical user interface
