@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 import programs.Account;
+import programs.Bank;
 
 public class Tests {
 
@@ -25,4 +26,20 @@ public class Tests {
 	}
 	
 	/* Write more tests! */
+
+	@Test
+	public void testBankCreation() {
+		Bank bank = new Bank("CS Bank");
+		
+		assertEquals(bank.getName(), "CS Bank");
+	}
+	
+	@Test
+	public void testBankFindAccount() {
+		Bank bank = new Bank("CS Bank");
+		
+		Account account = new Account("johndoe123@gmail.com", "badpassword123", 0.00);
+		
+		/* Add method in Bank class to manually create new account */
+	}
 }
