@@ -15,6 +15,7 @@ public class Bank {
 	private String bankName;
 
 	/* Construct a new Bank. */
+	
 	public Bank(String name) {
 		this.sc = new Scanner(System.in);
 		this.accounts = new HashSet<Account>();
@@ -22,11 +23,14 @@ public class Bank {
 	}
 
 	/* Return the bank's name. */
+	
 	public String getName() {
 		return this.bankName;
 	}
 	
-	/* Check to see if a customer already has an account with the bank. */
+	/* Check to see if a customer already has an account with the bank.
+	   Clients may only register one account per email. */
+	
 	public boolean containsAccount(String email) {
 		for (Account a : this.accounts) {
 			if (a.getEmail().equals(email)) {
@@ -37,6 +41,7 @@ public class Bank {
 	}
 	
 	/* Return the account belonging to a customer. */
+	
 	public Account getAccount(String email) {
 		for (Account a : this.accounts) {
 			if (a.getEmail().equals(email)) {
@@ -47,6 +52,7 @@ public class Bank {
 	}
 	
 	/* Check to see if a customer entered their password correctly. */
+	
 	public boolean checkPassword(String email, String password) {
 		if (getAccount(email).getPassword().equals(password)) {
 			return true;
@@ -55,8 +61,15 @@ public class Bank {
 	}
 	
 	/* Reset a customer's password if they forgot it. */
+	
 	public void resetPassword(String email, String newPassword) {
 		getAccount(email).resetPassword(newPassword);
+	}
+	
+	/* Method to manually add an account to the bank. */
+	
+	public void addAccount(Account account) {
+		accounts.add(account);
 	}
 
 	public void welcome() {
@@ -101,7 +114,7 @@ public class Bank {
 		boolean running = true;
 		
 		while (running) {
-			System.out.println("Enter your email, or exit to go back to the Home Screen: ");
+			System.out.println("Enter your email, or exit to go back to the Home Screen:");
 			email = sc.next();
 			
 			if (email.equals("exit") || email.equals("quit")) {
@@ -142,7 +155,7 @@ public class Bank {
 		boolean running = true;
 		
 		while (running) {
-			System.out.println("Enter your email, or exit to go back to the Home Screen: ");
+			System.out.println("Enter your email, or exit to go back to the Home Screen:");
 			email = sc.next();
 			
 			if (email.equals("exit") || email.equals("quit")) {
@@ -154,10 +167,10 @@ public class Bank {
 				/* Customers cannot open multiple accounts under the same email. */
 				System.out.println("There already exists an account registered to that email.");
 			} else {
-				System.out.println("Create your password: ");
+				System.out.println("Create your password:");
 				password = sc.next();
 				
-				accounts.add(new Account(email, password, 0.00));
+				addAccount(new Account(email, password, 0.00));
 				enterAccount(email, true);
 				running = false;
 			}
@@ -208,7 +221,9 @@ public class Bank {
 		
 		System.out.println("Enter an amount to withdraw:");
 		withdraw = sc.nextDouble();
-		/* If you withdraw too much money, you'll attract the attention of the IRS. */
+		
+		/* If you withdraw too much money at once, you'll attract the attention of the IRS. */
+		
 		if (withdraw > 9999.99) {
 			System.out.println("Withdraw cannot exceed $10,000.00; Please hold and expect an audit from the Internal Revenue Service within two (2) business days.");
 		} else {
