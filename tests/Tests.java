@@ -6,6 +6,8 @@ import org.junit.Test;
 import programs.Account;
 import programs.Bank;
 
+/* Space to write JUnit tests. */
+
 public class Tests {
 
 	@Test
@@ -40,6 +42,7 @@ public class Tests {
 		
 		Account account = new Account("johndoe123@gmail.com", "badpassword123", 0.00);
 		
-		/* Add method in Bank class to manually create new account */
+		bank.addAccount(account);
+		assertTrue(bank.containsAccount(account.getEmail()));
 	}
 }
