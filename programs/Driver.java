@@ -2,6 +2,8 @@ package programs;
 
 import java.util.Scanner;
 
+/* Executes program. */
+
 public class Driver {
 
 	public static void main(String[] args) {	
